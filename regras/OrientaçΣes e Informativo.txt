@@ -1,0 +1,17 @@
+﻿E aew blz? Topa fazer esse desafio? Então vamos lá!
+
+### SOBRE O DESAFIO
+1. O desafio representa um pouco o dia a dia na Ludy Tecnologia, onde as documentações de requisitos existem (Sério!) e são utilizadas durante todo o processo de desenvolvimento dos sistemas.
+
+2. Você recebeu dois requisitos característicos do nosso dia a dia. Esperamos que você interprete-o e desenvolva-o.
+
+3. Existe uma regra crucial neste desafio - Queremos ver dois projetos desassociados, afinal a vaga é Full Stack.
+Projeto 01 - Backend - Utilizando padrões RESTFull apara oferecer as APIs necessárias para atender os requisitos.
+Projeto 02 - Frontend - Montagem das telas consumindo o projeto backend. Pode utilizar a tecnologia que você achar melhor.
+* Projeto frontend constrído utilizando a tecnologia Angular ganharão uns pontinhos extra!
+
+### SOBRE A ENTREGA
+- Todos os participantes terão até o dia 22/04 para finalizar o projeto.
+- Seu projeto será demonstrado por você durante a sua entrevita, ou seja, reserve essa data.
+	- O horário da sua entrevista será distribuído por sorteio interno e informaremos através do seu e-mail.
+	- Se você não puder comparecer em horário comercial, favor notificar com antecedência - Whatsapp 988446664.
