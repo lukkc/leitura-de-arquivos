@@ -13,6 +13,7 @@ from arquivo.serializers import (
     ArquivoHistoricoSerializer
 )
 from arquivo.models import (
+    Arquivo,
     ArquivoChecagem,
     ArquivoHistorico,
     DadosArquivoChecagem,
@@ -33,18 +34,21 @@ class ListarOuCriarArquivos(ListCreateAPIView):
         arquivos_serializados = []
         arquivos_checagem = ArquivoChecagem.objects.all()
         arquivos_historico = ArquivoHistorico.objects.all()
+        lista_arquivos = []
+        lista_arquivos.extend(arquivos_checagem)
+        lista_arquivos.extend(arquivos_historico)
         arquivos_checagem_serializados = self._obter_arquivos_serializados(
-            arquivos_checagem,
-            'checagem'
+            lista_arquivos,
+            # 'checagem'
         )
-        arquivos_historico_serializados = self._obter_arquivos_serializados(
-            arquivos_historico,
-            'historico'
-        )
-        arquivos_serializados.extend(arquivos_checagem_serializados)
-        arquivos_serializados.extend(arquivos_historico_serializados)
+        # arquivos_historico_serializados = self._obter_arquivos_serializados(
+        #     arquivos_historico,
+        #     'historico'
+        # )
+        # arquivos_serializados.extend(arquivos_checagem_serializados)
+        # arquivos_serializados.extend(arquivos_historico_serializados)
 
-        return Response(arquivos_serializados, status=200)
+        return Response(arquivos_checagem_serializados, status=200)
 
     def create(self, request):
         try:
@@ -138,17 +142,23 @@ class ListarOuCriarArquivos(ListCreateAPIView):
                 status=500
             )
 
-    def _obter_arquivos_serializados(self, lista_arquivos, tipo_arquivo):
-        serializer = ArquivoChecagemSerializer
+    # def _obter_arquivos_serializados(self, lista_arquivos, tipo_arquivo):
+    def _obter_arquivos_serializados(self, lista_arquivos):
+        # serializer = ArquivoChecagemSerializer
         arquivos_serializados = []
-
-        if tipo_arquivo == 'historico':
-            serializer = ArquivoHistoricoSerializer
+        lista_arquivos = sorted(lista_arquivos, key = Arquivo.get_data_envio)
+        # if tipo_arquivo == 'historico':
+        #     serializer = ArquivoHistoricoSerializer
         
         for arquivo in lista_arquivos:
-            arquivo_serializado = serializer(arquivo).data
-            arquivos_serializados.append(arquivo_serializado)
+            arquivo_serializado = {}
+            print(arquivo.tipo_arquivo)
+            if arquivo.tipo_arquivo == 'checagem':
+                arquivo_serializado = ArquivoChecagemSerializer(arquivo).data
+            elif arquivo.tipo_arquivo == 'historico':
+                arquivo_serializado = ArquivoHistoricoSerializer(arquivo).data
         
+            arquivos_serializados.append(arquivo_serializado)
         return arquivos_serializados
 
 

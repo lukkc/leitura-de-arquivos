@@ -7,6 +7,9 @@ class Arquivo(models.Model):
     observacao = models.TextField(blank=False, null=False)
     data_envio = models.DateField(auto_now=False, auto_now_add=True)
 
+    def get_data_envio(self):
+        return self.data_envio;
+
 
 class ArquivoChecagem(Arquivo):
     tipo_arquivo = models.CharField(default='checagem', max_length=150)
