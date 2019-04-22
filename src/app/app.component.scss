@@ -1,0 +1,65 @@
+.navbar {
+     position: absolute;
+     top: 15px;
+     left: 0;
+     width: 70%;
+     height: 79px;
+     transform: translateX(20%);
+     padding: 10px 0 10px 10px;
+     background: #009688;
+     border-radius: 6px;
+     box-shadow: 1px 3px 4px #0003;
+     z-index: 1000;
+
+    .navbar-container {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: inherit;
+        padding: 10px 26px;
+        background: #673AB7;
+        border-radius: 6px;
+        box-shadow: 1px 3px 4px #0003;
+    }
+
+    .brand {
+        width: 59px;
+        height: 59px;
+        background: #009688;
+        padding: 7px;
+        border-radius: 50%;
+        box-shadow: 1px 3px 4px #0003;
+    }
+
+    .navbar-items {
+        position: relative;
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+
+        .navbar-item {
+            position: relative;
+            height: 46px;
+            margin-left: 10px;
+            border-radius: 4px;
+            background: #009688;
+            box-shadow: 1px 3px 4px #0003;
+            transition: transform 200ms;
+
+            &:active {
+                transform: scale(0.9, 0.9);
+            }
+
+            .navbar-link {
+                display: flex;
+                padding: 0 18px;
+                align-items: center;
+                height: inherit;
+                font-size: .95rem;
+                font-weight: bold;
+                color: #fff;
+            }
+        }
+    }
+}

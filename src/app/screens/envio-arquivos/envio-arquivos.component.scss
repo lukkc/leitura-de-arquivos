@@ -1,0 +1,198 @@
+form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .grupo-form {
+        position: relative;
+        display: flex;
+        width: 100%;
+    }
+
+    .mensagem-erro,
+    .mensagem-valido {
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 6px;
+
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    .mensagem-erro {
+        background: #f3d8d8;
+
+        p {
+            color: #E91E63;
+        }
+    }
+
+    .mensagem-valido {
+        background: #d8f3b9;
+
+        p {
+            color: #36863a;
+            text-align: center;
+        }
+    }
+
+    .checagem,
+    .historico {
+        width: 50%;
+        padding: 10px;
+
+        .mensagem-erro,
+        .mensagem-valido {
+            padding: 10px;
+            margin: 0 0;
+            border-radius: 0;
+        }
+    }
+
+    .historico {
+        .selecionar-historico {
+            cursor: not-allowed;
+        }
+        .liberar-historico {
+            cursor: pointer;
+        }
+    }
+
+    button {
+        position: relative;
+        align-self: flex-end;
+        width: 300px;
+        height: 55px;
+        background: #319687;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 6px;
+        border: none;
+        box-shadow: 1px 3px 4px #0003;
+        cursor: pointer;
+        transition: transform 200ms;
+        outline: none;
+        overflow: hidden;
+
+        &:active {
+            transform: scale(0.95, 0.9);
+        }
+
+        &.form-submitting {
+            cursor: wait;
+
+            &:active {
+                transform: scale(1, 1);
+            }
+        }
+
+        &.form-invalid-button {
+            font-size: .9rem;
+            background: #899a98;
+            cursor: not-allowed;
+        }
+    }
+
+}
+
+
+.arquivo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 400px;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    background: #673AB7;
+    overflow: hidden;
+    box-shadow: 1px 3px 4px #0003;
+
+    .spinner-container {
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        visibility: hidden;
+        width: 100%;
+        min-height: 47px;
+        padding: 10px 20px;
+        background: #309485;
+
+        .spinner {
+            position: relative;
+            width: 50px;
+            height: 30px; 
+        }
+
+        .mensagem {
+            position: relative;
+            height: 30px;
+            line-height: 30px;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #fff;
+        }
+
+        &.show {
+            position: relative;
+            visibility: visible;
+        }
+    }
+
+    label {
+        height: 47px;
+        line-height: 47px;
+        text-align: center;
+        color: #fff;
+        background: #309485;
+        cursor: pointer;
+    }
+
+    input {
+        position: absolute;
+        visibility: hidden;
+    }
+}
+
+.grupo-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #673AB7;
+    border-radius: 6px;
+    box-shadow: 1px 3px 4px #0003;
+
+    label {
+        margin-bottom: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    input, textarea {
+        height: 35px;
+        padding: 0 10px;
+        border: none;
+        font-size: .9rem;
+        color: #309485;
+        background: #fff;
+        cursor: not-allowed;
+    }
+
+    textarea {
+        height: 100px;
+        padding: 15px 10px;
+        resize: none;
+    }
+
+    .liberar {
+        cursor: text;
+    }
+}

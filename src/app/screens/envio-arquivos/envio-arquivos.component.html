@@ -1,0 +1,174 @@
+<section class="main">
+  <div class="container">
+    <div class="titulo">
+      <h2>Enviar Arquivos</h2>
+    </div>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div *ngIf="!formValido && !formSubmitting && formSubmitted" class="mensagem-erro">
+          <p>Todos os campos são obrigatorios</p>
+      </div>
+      <div *ngIf="formValido && !formSubmitting && formSubmitted && mensagensErroArquivos.length" class="mensagem-erro">
+          <p *ngFor="let mensagem of mensagensErroArquivos">{{mensagem}}</p>
+      </div>
+      <div *ngIf="formEnviado" class="mensagem-valido">
+          <p>Arquivos enviados com sucesso!</p>
+      </div>
+      <div class="grupo-form">
+        <div class="checagem">
+          <div class="arquivo">
+            <div [ngClass]="{'show': validandoChecagem}" class="spinner-container">
+              <h4 class="mensagem">Verificando o arquivo</h4>
+              <div class="spinner">
+                <ngx-spinner
+                  name="arquivo-checagem"
+                  bdOpacity = "1"
+                  bdColor = "#309485"
+                  size = "default"
+                  color = "#ffffff"
+                  type = "ball-pulse"
+                  [fullScreen] = "false"
+                  >
+                </ngx-spinner>
+              </div>
+            </div>
+            <label *ngIf="!validandoChecagem && !checagem.arquivo" for="checagemArquivo">Selecionar arquivo <strong>Checagem</strong></label>
+            <label *ngIf="!validandoChecagem && checagem.arquivo" for="checagemArquivo">{{nomeArquivoChecagem}}</label>
+            <input 
+              type="file" id="checagemArquivo" 
+              name="checagemArquivo"
+              [(ngModel)]="checagem.arquivo" 
+              #checagemArquivo="ngModel"
+              (change)="validarArquivoChecagem($event.target)"
+              required>
+            <div *ngIf="!checagemValido && checagem.arquivo && mensagensErroChecagem.length" class="mensagem-erro">
+              <p *ngFor="let mensagem of mensagensErroChecagem">{{mensagem}}</p>
+            </div>
+            <div *ngIf="checagemValido && checagem.arquivo && mensagensValidoChecagem.length" class="mensagem-valido">
+              <p *ngFor="let mensagem of mensagensValidoChecagem">{{mensagem}}</p>
+            </div>
+          </div>
+          <div class="grupo-input">
+            <label for="checagemAgencia">Agência</label>
+            <input 
+              type="number" id="checagemAgencia"
+              name="checagemAgencia"
+              [(ngModel)]="checagem.agencia"
+              #checagemAgencia
+              [ngClass]="{'liberar': checagemValido && checagem.arquivo}"
+              [disabled]="!checagemValido || !checagem.arquivo" required>
+          </div>
+          <div class="grupo-input">
+            <label for="">Competência</label>
+            <input 
+              type="date" id="checagemCompetencia"
+              name="checagemCompetencia"
+              [(ngModel)]="checagem.competencia"
+              #checagemCompetencia
+              [ngClass]="{'liberar': checagemValido && checagem.arquivo}"
+              [disabled]="!checagemValido || !checagem.arquivo" required>
+          </div>
+          <div class="grupo-input">
+            <label for="">Observação</label>
+            <textarea 
+              type="text" id="checagemObservacao"
+              name="checagemObservacao"
+              [(ngModel)]="checagem.observacao"
+              #checagemObservacao
+              [ngClass]="{'liberar': checagemValido && checagem.arquivo}"
+              [disabled]="!checagemValido || !checagem.arquivo" required></textarea>
+          </div>
+        </div>
+        <div class="historico">
+          <div class="arquivo">
+            <div [ngClass]="{'show': validandoHistorico}" class="spinner-container">
+              <h4 class="mensagem">Verificando o arquivo</h4>
+              <div class="spinner">
+                  <ngx-spinner
+                  name="arquivo-historico"
+                  bdOpacity = "1"
+                  bdColor = "#309485"
+                  size = "default"
+                  color = "#ffffff"
+                  type = "ball-pulse"
+                  [fullScreen] = "false"
+                  >
+                </ngx-spinner>
+              </div>
+            </div>
+            <label 
+              *ngIf="!validandoHistorico && !historico.arquivo" 
+              for="historicoArquivo"
+              class="selecionar-historico"
+              [ngClass]="{'liberar-historico': checagemValido && !!checagem.agencia && !!checagem.competencia && !!checagem.observacao}">
+                Selecionar arquivo <strong>Histórico</strong>
+              </label>
+            <label 
+              *ngIf="!validandoHistorico && historico.arquivo"
+              for="historicoArquivo">
+                {{nomeArquivoHistorico}}
+            </label>
+            <input 
+              type="file" id="historicoArquivo" 
+              name="historicoArquivo"
+              [(ngModel)]="historico.arquivo" 
+              #historicoArquivo="ngModel"
+              (change)="validarArquivoHistorico($event.target)"
+              [disabled]="!checagemValido || !checagem.agencia || !checagem.competencia || !checagem.observacao"
+              required>
+            <div *ngIf="!historicoValido && historico.arquivo && mensagensErroHistorico.length" class="mensagem-erro">
+              <p *ngFor="let mensagem of mensagensErroHistorico">{{mensagem}}</p>
+            </div>
+            <div *ngIf="historicoValido && historico.arquivo && mensagensValidoHistorico.length" class="mensagem-valido">
+              <p *ngFor="let mensagem of mensagensValidoHistorico">{{mensagem}}</p>
+            </div>
+          </div>
+          <div class="grupo-input">
+            <label for="historicoAgencia">Agência</label>
+            <input 
+              type="number" id="historicoAgencia"
+              name="historicoAgencia"
+              [(ngModel)]="historico.agencia"
+              #historicoAgencia
+              [ngClass]="{'liberar': historicoValido && historico.arquivo}"
+              [disabled]="!historicoValido || !historico.arquivo" required>
+          </div>
+          <div class="grupo-input">
+            <label for="">Competência</label>
+            <input 
+              type="date" id="historicoCompetencia"
+              name="historicoCompetencia"
+              [(ngModel)]="historico.competencia"
+              #historicoCompetencia
+              [ngClass]="{'liberar': historicoValido && historico.arquivo}"
+              [disabled]="!historicoValido || !historico.arquivo" required>
+          </div>
+          <div class="grupo-input">
+            <label for="">Observação</label>
+            <textarea 
+              type="text" id="historicoObservacao"
+              name="historicoObservacao"
+              [(ngModel)]="historico.observacao"
+              #historicoObservacao
+              [ngClass]="{'liberar': historicoValido && historico.arquivo}"
+              [disabled]="!historicoValido || !historico.arquivo" required></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button 
+        [ngClass]="{'form-submitting': formSubmitting}"
+        [disabled]="formSubmitting || form.invalid" type="submit">
+          Enviar
+          <ngx-spinner
+            name="form-submit"
+            bdOpacity = "1"
+            bdColor = "#309485"
+            size = "default"
+            color = "#ffffff"
+            type = "ball-pulse"
+            [fullScreen] = "false"
+          ></ngx-spinner>
+      </button>
+    </form>
+  </div>
+</section>

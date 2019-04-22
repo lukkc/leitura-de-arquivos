@@ -1,0 +1,71 @@
+<section class="main">
+  <div class="container">
+    <div class="titulo">
+      <h2>Lista de Arquivos</h2>
+    </div>
+    <div class="container-list">
+      <ul>
+        <li class="header">
+          <p>Tipo Arquivo</p>
+          <p>Data de Envio</p>
+        </li>
+        <li *ngFor="let arquivo of arquivos | filtroArquivos:tipoArquivo">
+          <div class="item">
+            <div class="grupo-dados">
+                <p class="tipo">{{arquivo.tipo_arquivo}}</p>
+                <p class="data">{{arquivo.data_envio | date:'d MMMM y' }}</p>
+            </div>
+            <button class="visualizar" (click)="visualizar(arquivo)">Visualizar arquivo</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="modal" class="modal">
+  <div class="container-modal">
+    
+    <div class="info-arquivo">
+      <div class="grupo-info">
+        <h1>Agência</h1>
+        <p>{{arquivoVisualizar.agencia}}</p>
+      </div>
+      <div class="grupo-info">
+        <h1>Competência</h1>
+        <p>{{arquivoVisualizar.competencia}}</p>
+      </div>
+      <div class="grupo-info">
+        <h1>Observação</h1>
+        <p>{{arquivoVisualizar.observacao}}</p>
+      </div>
+    </div>
+
+    <div class="table">
+      <div class="thead">
+        <div class="tr">
+          <h1 class="th">num_linha</h1>
+          <h1 class="th">num_registro</h1>
+          <h1 class="th" *ngIf="arquivoVisualizar.tipo_arquivo == 'checagem'">cnpj</h1>
+          <h1 class="th" *ngIf="arquivoVisualizar.tipo_arquivo == 'checagem'">indicador</h1>
+          <h1 class="th" *ngIf="arquivoVisualizar.tipo_arquivo == 'historico'">cod_conta</h1>
+          <h1 class="th">data_inicio</h1>
+          <h1 class="th">data_fim</h1>
+        </div>
+      </div>
+      <div class="tbody">
+        <div class="tr" *ngFor="let dado of arquivoVisualizar.dados_arquivo">
+          <p class="td">{{ dado.num_linha }}</p>
+          <p class="td">{{ dado.num_registro }}</p>
+          <p class="td" *ngIf="arquivoVisualizar.tipo_arquivo == 'checagem'">{{ dado.cnpj }}</p>
+          <p class="td" *ngIf="arquivoVisualizar.tipo_arquivo == 'checagem'">{{ dado.indicador }}</p>
+          <p class="td" *ngIf="arquivoVisualizar.tipo_arquivo == 'historico'">{{ dado.cod_conta }}</p>
+          <p class="td">{{ dado.data_inicio }}</p>
+          <p class="td">{{ dado.data_fim }}</p>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="fecharModal()">Voltar</button>
+  </div>
+</div>

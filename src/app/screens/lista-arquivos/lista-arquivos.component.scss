@@ -1,0 +1,203 @@
+.container-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .header {
+        position: relative;
+        display: flex;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 5px;
+        background: #6a57b7;
+        border-radius: 6px;
+        box-shadow: 1px 3px 4px #0003;
+
+        p {
+            width: 300px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #fff;
+        }
+    }
+
+    .item {
+        position: relative;
+        display: flex;
+        padding: 10px;
+        margin-bottom: 2px;
+        background: #6a57b7;
+        border-radius: 6px;
+        box-shadow: 1px 3px 4px #0003;
+
+        .grupo-dados {
+            position: relative;
+            display: flex;
+            flex: 1;
+            padding: 0 15px;
+            background: #319687;
+            box-shadow: 1px 3px 4px #0003;
+
+            p {
+                width: 300px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 1rem;
+                color: #fff;
+            }
+        }
+
+        .visualizar {
+            position: relative;
+            align-self: flex-end;
+            width: 150px;
+            height: 50px;
+            margin: 0 10px;
+            background: #319687;
+            font-size: .9rem;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: transform 200ms;
+            outline: none;
+            overflow: hidden;
+            box-shadow: 1px 3px 4px #0003;
+    
+            &:active {
+                transform: scale(0.95, 0.9);
+            }
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .73);
+    z-index: 2000;
+
+    .container-modal {
+        position: absolute;
+        top: 60px;
+        width: 90%;
+        height: 80%;
+        min-height: 500px;
+        border-radius: 6px;
+        background: #ececec;
+        overflow-y: auto;
+
+        button {
+            position: fixed;
+            top: 44px;
+            right: 48px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: .9rem;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: transform 200ms;
+            outline: none;
+            background: #ff5a5a;
+            box-shadow: 1px 3px 4px #0003;
+    
+            &:active {
+                transform: scale(0.9, 0.9);
+            }
+        }
+    }
+}
+
+.info-arquivo {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 20px 0 20px;
+
+    .grupo-info {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        padding: 10px;
+        background: #6a57b7;
+        border-radius: 6px;
+
+        h1 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        p {
+            min-height: 50px;
+            padding: 15px 10px;
+            font-size: 1rem;
+            color: #fff;
+            background: #319687;
+        }
+    }
+}
+
+.table {
+    position: relative;
+    width: 100%;
+    padding: 30px;
+
+    .thead,
+    .tbody,
+    .tr {
+        position: relative;
+        display: flex;
+        width: 100%;
+    }
+
+    .thead {
+        border-radius: 6px;
+        margin-bottom: 5px;
+        background: #6a57b7;
+        box-shadow: 1px 3px 4px #0003;
+
+        .th {
+            height: 60px;
+            line-height: 60px;
+        }
+    }
+
+    .tbody {
+        flex-direction: column;
+        width: 100%;
+
+        .tr {
+            margin-bottom: 2px;
+            background: #319687;
+
+            .td {
+                height: 55px;
+                line-height: 55px;
+            }
+        }
+    }
+
+    .th, .td {
+        flex: 1;
+        padding: 0 10px;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+    }
+}
